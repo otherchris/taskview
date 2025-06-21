@@ -1,0 +1,24 @@
+<h1>Task</h1>
+
+<%= form_with model: @task do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :minutes %>
+    <%= form.number_field :minutes %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<h2>Tasks</h2>
+<ul>
+  <% @tasks.each do |task| %>
+    <li><%= task.name %> (<%= task.minutes %> minutes)</li>
+  <% end %>
+</ul>
