@@ -1,51 +1,19 @@
-<h1>Task</h1>
+<h1>Tasks</h1>
 
-<%= form_with model: @task do |form| %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+<div data-controller="modal">
+  <button data-action="click->modal#open">New Task</button>
 
-  <div>
-    <%= form.label :years %>
-    <%= form.number_field :years %>
+  <div data-modal-target="modal" class="hidden">
+    <%= render "tasks/form", task: @task %>
+    <button data-action="click->modal#close">Close</button>
   </div>
-
-  <div>
-    <%= form.label :months %>
-    <%= form.number_field :months %>
-  </div>
-
-  <div>
-    <%= form.label :weeks %>
-    <%= form.number_field :weeks %>
-  </div>
-
-  <div>
-    <%= form.label :days %>
-    <%= form.number_field :days %>
-  </div>
-
-  <div>
-    <%= form.label :hours %>
-    <%= form.number_field :hours %>
-  </div>
-
-  <div>
-    <%= form.label :minutes %>
-    <%= form.number_field :minutes %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
 
 <h2>Tasks</h2>
 <ul>
   <% @tasks.each do |task| %>
     <li style="color: <%= task_color(task) %>;">
-      <%= task.name %> (<%= task.duration_in_seconds %> seconds) - <%= time_remaining_in_words(task) %>
+      <%= task.name %> (<%= task.interval_in_seconds %> seconds) - <%= time_remaining_in_words(task) %>
       <%= button_to "Remove", task_path(task), method: :delete %>
     </li>
   <% end %>

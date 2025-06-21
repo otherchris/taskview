@@ -61,3 +61,9 @@ group :test do
   gem "capybara"
   gem "capybara-playwright-driver"
 end
+
+# Use cookie-based sessions to protect against CSRF
+gem "cookie_store"
+
+# Use asset-hosting service specified by an environment variable
+# gem "asset_sync"

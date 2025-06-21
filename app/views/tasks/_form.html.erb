@@ -1,0 +1,15 @@
+<%= form_with model: @task do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :daily %>
+    <%= form.check_box :daily %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -100,6 +100,8 @@ GEM
       playwright-ruby-client (>= 1.16.0)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
+    cookie_store (0.2)
+      stream_parser (>= 0.2)
     crass (1.0.6)
     date (3.4.1)
     debug (1.11.0)
@@ -344,6 +346,7 @@ GEM
       rubocop-performance (~> 1.25.0)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
+    stream_parser (0.4)
     stringio (3.1.7)
     thor (1.3.2)
     thruster (0.1.14)
@@ -390,6 +393,7 @@ DEPENDENCIES
   brakeman
   capybara
   capybara-playwright-driver
+  cookie_store
   debug
   importmap-rails
   jbuilder

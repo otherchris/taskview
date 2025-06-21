@@ -1,13 +1,6 @@
 class TasksController < ApplicationController
   def create
-    duration = (params[:task][:years].to_i * 365 * 24 * 60 * 60) +
-      (params[:task][:months].to_i * 30 * 24 * 60 * 60) +
-      (params[:task][:weeks].to_i * 7 * 24 * 60 * 60) +
-      (params[:task][:days].to_i * 24 * 60 * 60) +
-      (params[:task][:hours].to_i * 60 * 60) +
-      (params[:task][:minutes].to_i * 60)
-
-    @task = Task.new(name: params[:task][:name], duration_in_seconds: duration)
+    @task = Task.new(task_params)
 
     if @task.save
       redirect_to root_path, notice: "Task was successfully created."
@@ -25,6 +18,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :years, :months, :weeks, :days, :hours, :minutes)
+    params.require(:task).permit(:name, :daily, :interval_in_seconds)
   end
 end

@@ -10,6 +10,22 @@
  */
 
 body {
-  background-color: #333;
-  color: #fff;
+  background-color: #ccc;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.main-content {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  body {
+    grid-template-columns: 1fr minmax(0, 960px) 1fr;
+  }
+
+  .main-content {
+    grid-column: 2;
+  }
 }
