@@ -76,7 +76,8 @@ jobs:
           bundler-cache: true
 
       - name: Install Playwright browsers
-        run: bundle add playwright-ruby-client
+        run: npx playwright install
+
 
       - name: Run tests
         env:
