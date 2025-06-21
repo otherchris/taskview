@@ -1,5 +1,9 @@
 {
   "devDependencies": {
     "playwright": "^1.52.0"
+  },
+  "scripts": {
+    "playwright:install": "playwright install --with-deps chromium",
+    "playwright:install-deps": "playwright install-deps chromium"
   }
 }
