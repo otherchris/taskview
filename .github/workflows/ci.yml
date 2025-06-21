@@ -75,6 +75,15 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Cache Playwright Chromium browser
         id: playwright-cache
         uses: actions/cache@v4
