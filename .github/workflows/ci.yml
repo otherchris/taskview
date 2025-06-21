@@ -76,7 +76,9 @@ jobs:
           bundler-cache: true
 
       - name: Install Playwright browsers
-        run: npx playwright install
+        run: PLAYWRIGHT_CLI_VERSION=$(bundle exec ruby -e 'require "playwright"; puts Playwright::COMPATIBLE_PLAYWRIGHT_VERSION.strip') 
+             npm install -D "playwright@$PLAYWRIGHT_CLI_VERSION" 
+             npx playwright install
 
 
       - name: Run tests
