@@ -7,6 +7,31 @@
   </div>
 
   <div>
+    <%= form.label :years %>
+    <%= form.number_field :years %>
+  </div>
+
+  <div>
+    <%= form.label :months %>
+    <%= form.number_field :months %>
+  </div>
+
+  <div>
+    <%= form.label :weeks %>
+    <%= form.number_field :weeks %>
+  </div>
+
+  <div>
+    <%= form.label :days %>
+    <%= form.number_field :days %>
+  </div>
+
+  <div>
+    <%= form.label :hours %>
+    <%= form.number_field :hours %>
+  </div>
+
+  <div>
     <%= form.label :minutes %>
     <%= form.number_field :minutes %>
   </div>
@@ -19,6 +44,9 @@
 <h2>Tasks</h2>
 <ul>
   <% @tasks.each do |task| %>
-    <li><%= task.name %> (<%= task.minutes %> minutes)</li>
+    <li style="color: <%= task_color(task) %>;">
+      <%= task.name %> (<%= task.duration_in_seconds %> seconds) - <%= time_remaining_in_words(task) %>
+      <%= button_to "Remove", task_path(task), method: :delete %>
+    </li>
   <% end %>
 </ul>

@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_21_015006) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_21_021208) do
   create_table "tasks", force: :cascade do |t|
     t.string "name"
-    t.integer "minutes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "duration_in_seconds"
   end
 end
