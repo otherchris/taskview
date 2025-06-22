@@ -10,11 +10,39 @@
 </div>
 
 <h2>Tasks</h2>
-<ul>
-  <% @tasks.each do |task| %>
-    <li style="color: <%= task_color(task) %>;">
-      <%= task.name %> (<%= task.interval_in_seconds %> seconds) - <%= time_remaining_in_words(task) %>
-      <%= button_to "Remove", task_path(task), method: :delete %>
-    </li>
-  <% end %>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Percent to Expiration</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= percent_to_expiration(task) %>%</td>
+        <td>
+          <% if task.daily? %>
+            <% (1..times_per_day(task)).each do |i| %>
+              <input type="checkbox" <%= "checked" if i <= completions_today(task) %> disabled>
+            <% end %>
+          <% else %>
+            <%= time_remaining_in_words(task) %>
+          <% end %>
+        </td>
+        <td>
+          <% if task.daily? %>
+            <%= form_with(url: complete_task_path(task), method: :post) do |form| %>
+              <%= form.submit "Complete", disabled: completions_today(task) >= times_per_day(task) %>
+            <% end %>
+          <% else %>
+            <%= button_to "Remove", task_path(task), method: :delete %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

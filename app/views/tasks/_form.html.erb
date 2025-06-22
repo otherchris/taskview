@@ -1,12 +1,23 @@
-<%= form_with model: @task do |form| %>
+<%= form_with model: @task, data: { controller: "daily-interval" } do |form| %>
   <div>
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
+  <div data-daily-interval-target="interval">
+    <%= form.label :interval %>
+    <%= form.number_field :interval_value %>
+    <%= form.select :interval_unit, options_for_select([ "days", "weeks", "months", "years" ]) %>
+  </div>
+
+  <div data-daily-interval-target="timesPerDay" class="hidden">
+    <%= form.label :times_per_day %>
+    <%= form.number_field :times_per_day %>
+  </div>
+
   <div>
     <%= form.label :daily %>
-    <%= form.check_box :daily %>
+    <%= form.check_box :daily, data: { action: "change->daily-interval#toggleInputs" } %>
   </div>
 
   <div>
