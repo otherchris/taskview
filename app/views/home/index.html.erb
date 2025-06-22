@@ -39,9 +39,28 @@
               <%= form.submit "Complete", disabled: completions_today(task) >= times_per_day(task) %>
             <% end %>
           <% else %>
+            <%= button_to "Complete", complete_task_path(task), method: :post %>
             <%= button_to "Remove", task_path(task), method: :delete %>
           <% end %>
         </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Completions</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Completed At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @completions.each do |completion| %>
+      <tr>
+        <td><%= completion.task.name %></td>
+        <td><%= completion.created_at.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
     <% end %>
   </tbody>

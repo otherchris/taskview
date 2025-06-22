@@ -37,6 +37,6 @@ module TasksHelper
   end
 
   def completions_today(task)
-    task.completions.count { |completion| completion.to_date == Date.today }
+    task.completions.where("created_at >= ?", Time.zone.now.beginning_of_day).count
   end
 end
