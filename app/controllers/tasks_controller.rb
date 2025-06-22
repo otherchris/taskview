@@ -36,10 +36,9 @@ class TasksController < ApplicationController
 
   def complete
     @task = Task.find(params[:id])
+    @task.completions.create
     if @task.daily?
-      @task.completions.create
     else
-      @task.completions.create
       @task.update(created_at: Time.current)
     end
     redirect_to root_path
