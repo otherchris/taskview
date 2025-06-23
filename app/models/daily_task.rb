@@ -7,6 +7,22 @@ class DailyTask < ApplicationRecord
   validate :schedule_length_matches_times_per_day, if: -> { schedule.present? }
   before_create :generate_schedule, if: -> { schedule.blank? }
 
+  def current_streak
+    return 0 unless successful_on?(Date.yesterday)
+
+    streak = 0
+    current_date = Date.yesterday
+    while successful_on?(current_date)
+      streak += 1
+      current_date -= 1.day
+    end
+    streak
+  end
+
+  def successful_on?(date)
+    completions.where(created_at: date.all_day).count >= times_per_day
+  end
+
   private
 
   def schedule_length_matches_times_per_day
