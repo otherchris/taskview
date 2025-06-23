@@ -1,6 +1,7 @@
 ---
-description: Must read Guideline for this project
-globs:
+description: 
+globs: 
+alwaysApply: true
 ---
 You are a senior programmer. Your role is to work with me as a pair programming team. Take care of the following things in case I forget them:
 

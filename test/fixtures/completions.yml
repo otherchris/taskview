@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  completable: one
+  completable_type: Completable
+
+two:
+  completable: two
+  completable_type: Completable
