@@ -1,6 +1,7 @@
 ---
-description: Guidelines for using the rails and bin/rails command
-globs:
+description: 
+globs: 
+alwaysApply: true
 ---
 ## General Rules
 
