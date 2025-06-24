@@ -2,6 +2,9 @@
   <span>
     <%= daily_task.title %>
     <span class="text-gray-500 text-sm">(<%= daily_task.completions_for_today.count %>/<%= daily_task.times_per_day %>)</span>
+    <% if daily_task.current_streak > 0 %>
+      <span class="text-orange-500 text-sm ml-2">Streak: <%= daily_task.current_streak %> 🔥</span>
+    <% end %>
   </span>
   
   <% unless daily_task.completed_today? %>

@@ -25,22 +25,25 @@ class DailyTasksTest < ApplicationSystemTestCase
 
   test "completing a daily task" do
     daily_task = create(:daily_task, title: "My new task", times_per_day: 2, schedule: ["09:00", "17:00"])
-    visit daily_tasks_url
 
-    within "#daily_task_#{daily_task.id}" do
-      assert_text "My new task (0/2)"
-      click_button "Complete"
-    end
+    travel_to Time.zone.local(2025, 6, 24, 8, 0, 0) do
+      visit daily_tasks_url
 
-    within "#daily_task_#{daily_task.id}" do
-      assert_text "My new task (1/2)"
-      click_button "Complete"
-    end
+      within "#daily_task_#{daily_task.id}" do
+        assert_text "My new task (0/2)"
+        click_button "Complete"
+      end
 
-    within "#daily_task_#{daily_task.id}" do
-      assert_text "My new task (2/2)"
-      assert_text "Done!"
-      assert_no_button "Complete"
+      within "#daily_task_#{daily_task.id}" do
+        assert_text "My new task (1/2)"
+        click_button "Complete"
+      end
+
+      within "#daily_task_#{daily_task.id}" do
+        assert_text "My new task (2/2)"
+        assert_text "Done!"
+        assert_no_button "Complete"
+      end
     end
   end
 end

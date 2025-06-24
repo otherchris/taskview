@@ -20,7 +20,7 @@ class DailyTask < ApplicationRecord
   end
 
   def successful_on?(date)
-    completions.where(created_at: date.all_day).count >= times_per_day
+    completions.where(assigned_date: date).count >= times_per_day
   end
 
   def next_date
