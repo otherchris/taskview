@@ -84,4 +84,30 @@ class DailyTaskTest < ActiveSupport::TestCase
     create(:completion, completable: daily_task, created_at: 1.day.ago)
     assert_equal 0, daily_task.current_streak
   end
+
+  test "next_date returns the next scheduled time today" do
+    travel_to Time.zone.local(2025, 6, 24, 12, 0, 0) do
+      task = create(:daily_task, schedule: ["09:00", "14:00", "19:00"], times_per_day: 3)
+      assert_equal Time.zone.local(2025, 6, 24, 14, 0, 0), task.next_date
+    end
+  end
+
+  test "next_date returns the first scheduled time tomorrow if all of today's have passed" do
+    travel_to Time.zone.local(2025, 6, 24, 20, 0, 0) do
+      task = create(:daily_task, schedule: ["09:00", "14:00", "19:00"], times_per_day: 3)
+      assert_equal Time.zone.local(2025, 6, 25, 9, 0, 0), task.next_date
+    end
+  end
+
+  test "#complete! creates a completion with the next_date" do
+    travel_to Time.zone.local(2025, 6, 24, 12, 0, 0) do
+      task = create(:daily_task, schedule: ["09:00", "14:00", "19:00"], times_per_day: 3)
+      next_date = task.next_date
+      completion = task.complete!
+
+      assert completion.persisted?
+      assert_equal next_date.to_date, completion.assigned_date
+      assert_equal task, completion.completable
+    end
+  end
 end

@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_23_232908) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_24_000045) do
   create_table "calendar_tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.date "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "repeats", default: "no_repeats", null: false
+    t.integer "repeats_every", default: 1, null: false
+    t.datetime "initial_date", null: false
   end
 
   create_table "completions", force: :cascade do |t|
@@ -24,6 +27,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_23_232908) do
     t.integer "completable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "assigned_date"
     t.index ["completable_type", "completable_id"], name: "index_completions_on_completable"
   end
 

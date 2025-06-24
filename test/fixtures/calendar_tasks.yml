@@ -4,8 +4,10 @@ one:
   title: MyString
   description: MyText
   due_date: 2025-06-23
+  initial_date: 2025-06-23 00:00:00
 
 two:
   title: MyString
   description: MyText
   due_date: 2025-06-23
+  initial_date: 2025-06-23 00:00:00
