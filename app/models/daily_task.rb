@@ -44,7 +44,7 @@ class DailyTask < ApplicationRecord
   end
 
   def completions_for_today
-    completions.where(assigned_date: Date.current)
+    completions.where(created_at: Date.current.all_day)
   end
 
   def completed_today?
