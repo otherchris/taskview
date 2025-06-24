@@ -1,34 +1,16 @@
 class CalendarTask < ApplicationRecord
-  has_many :completions, as: :completable, dependent: :destroy
-
-  enum :repeats, {no_repeats: "no_repeats", daily: "daily", weekly: "weekly", monthly: "monthly", annually: "annually"}, prefix: true
+  include Completable
+  include Repeatable
 
   validates :initial_date, presence: true
 
   def next_date
-    return initial_date if repeats_no_repeats?
-
-    now = Time.current
-
-    return initial_date if initial_date > now
+    return initial_date if repeats_no_repeats? || initial_date > Time.current
 
     next_occurrence = initial_date
-
-    duration_method = case repeats.to_sym
-    when :daily
-      :days
-    when :weekly
-      :weeks
-    when :monthly
-      :months
-    when :annually
-      :years
+    while next_occurrence <= Time.current
+      next_occurrence = advance_date(next_occurrence)
     end
-
-    while next_occurrence <= now
-      next_occurrence = next_occurrence.advance(duration_method => repeats_every)
-    end
-
     next_occurrence
   end
 

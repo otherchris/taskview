@@ -1,5 +1,5 @@
 class DailyTask < ApplicationRecord
-  has_many :completions, as: :completable, dependent: :destroy
+  include Completable
 
   attribute :times_per_day, :integer, default: 1
   serialize :schedule, type: Array, coder: JSON
@@ -37,10 +37,6 @@ class DailyTask < ApplicationRecord
     # If all times for today have passed, return the first time for tomorrow
     first_time_tomorrow = sorted_schedule.first
     first_time_tomorrow.change(year: today.year, month: today.month, day: today.day) + 1.day
-  end
-
-  def complete!
-    completions.create!(assigned_date: next_date)
   end
 
   private
