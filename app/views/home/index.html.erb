@@ -1,0 +1,20 @@
+<div class="container mx-auto px-4">
+  <h1 class="text-2xl font-bold my-4">Welcome to TaskView</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <%= link_to daily_tasks_path, class: "bg-white p-4 rounded-lg shadow hover:bg-gray-100" do %>
+      <h2 class="text-xl font-semibold mb-2">Daily Tasks</h2>
+      <p>View and manage your daily tasks.</p>
+    <% end %>
+
+    <%= link_to calendar_tasks_path, class: "bg-white p-4 rounded-lg shadow hover:bg-gray-100" do %>
+      <h2 class="text-xl font-semibold mb-2">Calendar Tasks</h2>
+      <p>View and manage your calendar tasks.</p>
+    <% end %>
+
+    <%= link_to interval_tasks_path, class: "bg-white p-4 rounded-lg shadow hover:bg-gray-100" do %>
+      <h2 class="text-xl font-semibold mb-2">Interval Tasks</h2>
+      <p>View and manage your interval tasks.</p>
+    <% end %>
+  </div>
+</div> 

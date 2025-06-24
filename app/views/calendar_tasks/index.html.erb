@@ -1,0 +1,8 @@
+<div class="container mx-auto px-4">
+  <h1 class="text-2xl font-bold my-4">Calendar Tasks</h1>
+  <ul class="list-disc list-inside bg-white p-4 rounded-lg shadow">
+    <% @calendar_tasks.each do |task| %>
+      <li class="mb-1"><%= task.title %></li>
+    <% end %>
+  </ul>
+</div>

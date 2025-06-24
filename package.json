@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "yarn": "^1.22.22"
+  },
+  "devDependencies": {
+    "playwright": "^1.52.0"
+  },
+  "scripts": {
+    "playwright:install": "playwright install"
+  }
+}

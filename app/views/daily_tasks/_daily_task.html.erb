@@ -1,0 +1,12 @@
+<li id="<%= dom_id daily_task %>" class="mb-1 flex justify-between items-center">
+  <span>
+    <%= daily_task.title %>
+    <span class="text-gray-500 text-sm">(<%= daily_task.completions_for_today.count %>/<%= daily_task.times_per_day %>)</span>
+  </span>
+  
+  <% unless daily_task.completed_today? %>
+    <%= button_to "Complete", complete_daily_task_path(daily_task), method: :patch, class: "bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-xs" %>
+  <% else %>
+    <span class="text-green-500 font-bold">Done!</span>
+  <% end %>
+</li> 

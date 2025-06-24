@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "new_daily_task" do %>
+  <div class="bg-white p-4 rounded-lg shadow mb-4">
+    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">New Daily Task</h3>
+    <%= render "form", daily_task: @daily_task %>
+  </div>
+<% end %>

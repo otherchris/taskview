@@ -39,6 +39,18 @@ class DailyTask < ApplicationRecord
     first_time_tomorrow.change(year: today.year, month: today.month, day: today.day) + 1.day
   end
 
+  def complete!
+    completions.create!(assigned_date: next_date)
+  end
+
+  def completions_for_today
+    completions.where(assigned_date: Date.current)
+  end
+
+  def completed_today?
+    completions_for_today.count >= times_per_day
+  end
+
   private
 
   def schedule_length_matches_times_per_day
@@ -56,5 +68,9 @@ class DailyTask < ApplicationRecord
       (Time.current.beginning_of_day + minutes_from_midnight.minutes).strftime("%H:%M")
     end
     schedule << "23:59"
+  end
+
+  def schedule_times_for_date(date)
+    # Implementation of schedule_times_for_date method
   end
 end
