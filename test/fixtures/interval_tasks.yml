@@ -4,8 +4,10 @@ one:
   title: MyString
   description: MyText
   interval: 1
+  last_date: 2025-06-24 01:38:07
 
 two:
   title: MyString
   description: MyText
   interval: 1
+  last_date: 2025-06-24 01:38:07

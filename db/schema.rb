@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_24_000045) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_24_014625) do
   create_table "calendar_tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -46,5 +46,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_24_000045) do
     t.integer "interval"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "repeats", default: "no_repeats", null: false
+    t.integer "repeats_every", default: 1, null: false
+    t.datetime "last_date", null: false
   end
 end
